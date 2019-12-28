@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,5 +39,24 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+
+    public function login(Request $request)
+    {
+        $credentials=$this->validate($request,[
+            'email' => 'required|email|string',
+            'password' => 'required|string'
+        ]);
+
+        $email = $request->get('email');
+        $password = $request->get('password');
+
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'activo' => 1])) {
+            return redirect()->intended('/');
+        }
+        else{
+            return back()->withErrors(['email'=> trans('Verifica tus datos.')]);
+        }
     }
 }

@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
     <head>        
         <!-- META SECTION -->
-        <title>Libroteca</title>            
+        <title>Salas ITTG</title>            
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        <link rel="icon" href="{% static 'favicon.ico'%}" type="image/x-icon" />
+        <link rel="icon" href="{{asset('favicon.ico') }}" type="image/x-icon" />
         <!-- END META SECTION -->
         
         <!-- CSS INCLUDE -->        
-        <link rel="stylesheet" type="text/css" id="theme" href="{% static 'css/theme-white.css'%}"/>
+        <link rel="stylesheet" type="text/css" id="theme" href="{{asset('css/theme-white.css')}}"/>
         
         <!-- EOF CSS INCLUDE -->                                   
     </head>
@@ -25,43 +24,51 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-                        <a href="#">BIBLIOTECA</a>
-                        <a href="#" class="x-navigation-control"></a>
+                        <a href="">SALAS ITTG</a>
+                        <a href="" class="x-navigation-control"></a>
                     </li>
                     <li class="xn-profile">
-                        <a href="#" class="profile-mini">
-                            <img src="{% static 'assets/images/users/avatar.jpg'%}" alt="Gerente"/>
+                        <a href="" class="profile-mini">
+                            <img src="{{asset('assets/images/users/no-image.jpg') }}"/>
                         </a>
                         <div class="profile">
                             <div class="profile-image">
-                                <!--
-                                <img src="{% static 'assets/images/users/avatar.jpg'%}" alt="Gerente"/>
-                                -->
+                                
+                                <img src="{{asset('assets/images/users/no-image.jpg') }}"/>
+                                
                             </div>
                             <div class="profile-data">
-                                <div class="profile-data-name">{{user.username | upper}}</div>
+                                <div class="profile-data-name">{{Auth::user()->name}}</div>
                                 <div class="profile-data-title">
-                                    Prestador
+                                    @if (Auth::user()->rol=="admin")
+                                        Admin
+                                    @else
+                                        Usuario General
+                                    @endif
                                 </div>
                             </div>
-                            <!--
+                            
                             <div class="profile-controls">
-                                <a href="#" class="profile-control-left"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="profile-control-right"><span class="fa fa-cog"></span></a>
+                                
+                                <a href="{{ URL::action('Admin\UsuariosController@edit',Auth::user()->id)}}" class="profile-control-left"><span class="fa fa-edit"></span></a>
+                                <a href="{{ url('resetpass') }}" class="profile-control-right"><span class="fa fa-cog"></span></a>
                             </div>
-                            -->
+                            
                         </div>                                                                        
                     </li>
                     <li class="xn-title">Navegación</li>
                     <li class="active">
-                        <a href="{% url 'inicio' %}"><span class="fa fa-desktop"></span> <span class="xn-text">Libros</span></a>                        
-                    </li>                    
-                    <li class="xn-openable">
-                        <a href=""><span class="fa fa-file-text-o"></span> <span class="xn-text">Mis libros</span></a>
-                        <ul>
-                            <li><a href="{% url 'prestados' %}"><span class="fa fa-money"></span> Prestados</a></li>            
-                        </ul>
+                        <a href="{{ url('/') }}"><span class="fa fa-desktop"></span> <span class="xn-text">Inicio</span></a>                        
                     </li>
+                    @if (Auth::user()->rol=='admin')
+                    <li class="xn-openable">
+                        <a href=""><span class="fa fa-user"></span> <span class="xn-text">Usuarios</span></a>
+                        <ul>
+                            <li><a href="{{ url('usuarios') }}"><span class="fa fa-user"></span> Usuarios Generales</a></li>            
+                        </ul>
+                    </li>    
+                    @endif                    
+                    
                     
                     
                 </ul>
@@ -144,8 +151,7 @@
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">
                     <!--AQUI EMPIEZA EL CONTENIDO-->
-                    {% block content%}
-                    {% endblock%}
+                    @yield('content')
                     <!--AQUI TERMINA EL CONTENIDO-->
                 </div>
                 <!-- END PAGE CONTENT WRAPPER -->                                
@@ -169,9 +175,9 @@
                             class="btn btn-success btn-lg"
                             onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">Yes</a>
-                            <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
-                                <!--AQUI VA EL TOKEN csrf-->
-                                {% csrf_token %}
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <!--AQUI VA EL TOKEN @csrf  -->
+                                @csrf
                             </form>
                             <button class="btn btn-default btn-lg mb-control-close">No</button>
                         </div>
@@ -184,51 +190,49 @@
 
 
         <!-- START PRELOADS -->
-        <audio id="audio-alert" src="{% static 'audio/alert.mp3'%}" preload="auto"></audio>
-        <audio id="audio-fail" src="{% static 'audio/fail.mp3'%}" preload="auto"></audio>
+        <audio id="audio-alert" src="{{asset('audio/alert.mp3') }}" preload="auto"></audio>
+        <audio id="audio-fail" src="{{asset('audio/fail.mp3') }}" preload="auto"></audio>
         <!-- END PRELOADS -->                  
         
     <!-- START SCRIPTS -->
     
         <!-- START PLUGINS -->
-        <script type="text/javascript" src="{% static 'js/plugins/jquery/jquery.min.js'%}"></script>
-        <script type="text/javascript" src="{% static 'js/plugins/jquery/jquery-ui.min.js'%}"></script>
-        <script type="text/javascript" src="{% static 'js/plugins/bootstrap/bootstrap.min.js'%}"></script>        
+        <script type="text/javascript" src="{{asset('js/plugins/jquery/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/jquery/jquery-ui.min.js') }}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/bootstrap/bootstrap.min.js') }}"></script>        
         <!-- END PLUGINS -->
 
-        {% block extra_js %}
-        {% endblock%}
 
         <!-- START THIS PAGE PLUGINS-->        
-        <script type='text/javascript' src="{% static 'js/plugins/icheck/icheck.min.js'%}"></script>        
-        <script type="text/javascript" src="{% static 'js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'%}"></script>
-        <script type="text/javascript" src="{% static 'js/plugins/scrolltotop/scrolltopcontrol.js'%}"></script>
+        <script type='text/javascript' src="{{asset('js/plugins/icheck/icheck.min.js') }}"></script>        
+        <script type="text/javascript" src="{{asset('js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js') }}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/scrolltotop/scrolltopcontrol.js') }}"></script>
         
-        <script type="text/javascript" src="{% static 'js/plugins/morris/raphael-min.js'%}"></script>
-        <script type="text/javascript" src="{% static 'js/plugins/morris/morris.min.js'%}"></script>       
-        <script type="text/javascript" src="{% static 'js/plugins/rickshaw/d3.v3.js'%}"></script>
-        <script type="text/javascript" src="{% static 'js/plugins/rickshaw/rickshaw.min.js'%}"></script>
-        <script type='text/javascript' src="{% static 'js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'%}"></script>
-        <script type='text/javascript' src="{% static 'js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'%}"></script>                
-        <script type='text/javascript' src="{% static 'js/plugins/bootstrap/bootstrap-datepicker.js'%}"></script>                
-        <script type="text/javascript" src="{% static 'js/plugins/owl/owl.carousel.min.js'%}"></script> 
-        <script type="text/javascript" src="{% static 'js/plugins/bootstrap/bootstrap-file-input.js'%}"></script>
-        <script type="text/javascript" src="{% static 'js/plugins/bootstrap/bootstrap-select.js'%}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/morris/raphael-min.js') }}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/morris/morris.min.js') }}"></script>       
+        <script type="text/javascript" src="{{asset('js/plugins/rickshaw/d3.v3.js') }}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/rickshaw/rickshaw.min.js') }}"></script>
+        <script type='text/javascript' src="{{asset('js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
+        <script type='text/javascript' src="{{asset('js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>                
+        <script type='text/javascript' src="{{asset('js/plugins/bootstrap/bootstrap-datepicker.js') }}"></script>                
+        <script type="text/javascript" src="{{asset('js/plugins/owl/owl.carousel.min.js') }}"></script> 
+        <script type="text/javascript" src="{{asset('js/plugins/bootstrap/bootstrap-file-input.js') }}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/bootstrap/bootstrap-select.js') }}"></script>
                         
         
-        <script type="text/javascript" src="{% static 'js/plugins/moment.min.js'%}"></script>
-        <script type="text/javascript" src="{% static 'js/plugins/daterangepicker/daterangepicker.js'%}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/moment.min.js') }}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins/daterangepicker/daterangepicker.js') }}"></script>
         <!-- END THIS PAGE PLUGINS-->        
         <!-- THIS PAGE EVENTOS -->
-        <script type="text/javascript" src="{% static 'js/plugins/datatables/jquery.dataTables.min.js'%}"></script>    
+        <script type="text/javascript" src="{{asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>    
         <!-- END PAGE PLUGINS -->
         <!-- START TEMPLATE -->
-        <script type="text/javascript" src="{% static 'js/settings.js'%}"></script>
+        {{-- <script type="text/javascript" src="{{asset('js/settings.js') }}"></script> --}}
         
-        <script type="text/javascript" src="{% static 'js/plugins.js'%}"></script>        
-        <script type="text/javascript" src="{% static 'js/actions.js'%}"></script>
+        <script type="text/javascript" src="{{asset('js/plugins.js') }}"></script>        
+        <script type="text/javascript" src="{{asset('js/actions.js') }}"></script>
         
-        <script type="text/javascript" src="{% static 'js/demo_dashboard.js'%}"></script>
+        <script type="text/javascript" src="{{asset('js/demo_dashboard.js') }}"></script>
         <!-- END TEMPLATE -->
     <!-- END SCRIPTS -->         
     </body>
