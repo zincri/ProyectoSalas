@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\User;
 use App\Token;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class TokensController extends Controller
 {
@@ -29,8 +30,8 @@ class TokensController extends Controller
         }
         else{
 
-            $datos = Token::where('activo', '=', '1')->get();
-            return view("content.usuarios.index",['datos'=>$datos]);
+            $datos = Token::all();
+            return view("content.tokens.index",['datos'=>$datos]);
         }
     }
 
@@ -41,7 +42,18 @@ class TokensController extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::user()->rol!="admin"){
+            return back();
+        }
+        else{
+            $token = new Token;
+            $token->activo=1;
+            $token->token= Str::random(6);
+            $token->user_id=Auth::user()->id;
+            $token->save();
+            return view("content.tokens.create",['token'=>$token]);
+        }
+        
     }
 
     /**
@@ -97,6 +109,15 @@ class TokensController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Auth::user()->rol!="admin"){
+            return back();
+        }
+        else{
+            $token = Token::findOrFail($id);
+            $token->activo = 0;
+            $token->update();
+            return Redirect::to('tokens');
+        } 
+        
     }
 }

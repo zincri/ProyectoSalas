@@ -28,8 +28,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
         Schema::table('users', function ($table) {
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->enum('rol', array('admin','general'))->nullable();
         });
     }
 

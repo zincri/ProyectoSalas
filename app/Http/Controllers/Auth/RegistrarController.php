@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\User;
+use App\Token;
 
 class RegistrarController extends Controller
 {
@@ -46,20 +47,34 @@ class RegistrarController extends Controller
             'email' => 'required|string|email|max:50|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'telefono'=>'required|string|max:10',
+            'token'=>'required|string|max:6',
         ]);
 
-        $usuario = new User;
-        $usuario->name = $request->get('nombre');
-        $usuario->email = $request->get('email');
-        $usuario->password = bcrypt($request->get('password'));
-        $usuario->activo = 1;
-        $usuario->rol = "general";
-        $usuario->apellido_paterno = $request->get('apellido_paterno');
-        $usuario->apellido_materno = $request->get('apellido_materno');
-        $usuario->edad = $request->get('edad');
-        $usuario->telefono = $request->get('telefono');
-        $usuario->save();
-        return Redirect::to('login');
+
+        $token = $request->get('token');
+        $db_token = Token::where('token','=',$token)->where('activo','=',1)->first();
+
+        if($db_token!=null){
+            $db_token->activo=0;
+            $db_token->update();
+            $usuario = new User;
+            $usuario->name = $request->get('nombre');
+            $usuario->email = $request->get('email');
+            $usuario->password = bcrypt($request->get('password'));
+            $usuario->activo = 1;
+            $usuario->rol = "general";
+            $usuario->remember_token = $token;
+            $usuario->apellido_paterno = $request->get('apellido_paterno');
+            $usuario->apellido_materno = $request->get('apellido_materno');
+            $usuario->edad = $request->get('edad');
+            $usuario->telefono = $request->get('telefono');
+            $usuario->save();
+            return Redirect::to('login');
+        }
+        else{
+            return back()->withErrors(['token'=> trans('El token no es valido.')]);
+        }
+
     }
 
     /**

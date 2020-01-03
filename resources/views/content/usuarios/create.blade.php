@@ -45,7 +45,6 @@
                                         value="{{old('apellido_materno')}}" />
                                 </div>
                                 {!! $errors->first('apellido_materno','<span class="help-block">:message</span>')!!}
-
                             </div>
                         </div>
 

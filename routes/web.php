@@ -32,4 +32,4 @@ Route::post('resetpassuser/{id}','Admin\UsuariosController@saveresetpassuser')->
 
 
 //RUTAS DE TOKENS
-Route::resource('tokens','Admin\TonkensController');
+Route::resource('tokens','Admin\TokensController');
