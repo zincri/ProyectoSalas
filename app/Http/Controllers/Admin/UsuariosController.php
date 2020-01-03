@@ -29,7 +29,6 @@ class UsuariosController extends Controller
             return Redirect::to('/');
         }
         else{
-
             $datos = User::where('activo', '=', '1')->get();
             return view("content.usuarios.index",['datos'=>$datos]);
         }

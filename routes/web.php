@@ -12,6 +12,8 @@
 */
 //Auth::routes();
 
+
+//RUTAS DE AUTH Y USUARIOS
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/login', function () {
     if(Auth::check()){
@@ -29,3 +31,7 @@ Route::get('resetpass','Admin\UsuariosController@resetpass')->name('resetpass');
 Route::post('resetpass','Admin\UsuariosController@saveresetpass')->name('resetpass');
 Route::get('resetpassuser/{id}','Admin\UsuariosController@resetpassuser')->name('resetpassuser');
 Route::post('resetpassuser/{id}','Admin\UsuariosController@saveresetpassuser')->name('resetpassuser');
+
+
+//RUTAS DE TOKENS
+Route::resource('tokens','Admin\TokensController');

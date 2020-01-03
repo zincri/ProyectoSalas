@@ -64,7 +64,8 @@
                     <li class="xn-openable">
                         <a href=""><span class="fa fa-user"></span> <span class="xn-text">Usuarios</span></a>
                         <ul>
-                            <li><a href="{{ url('usuarios') }}"><span class="fa fa-user"></span> Usuarios Generales</a></li>            
+                            <li><a href="{{ url('usuarios') }}"><span class="fa fa-user"></span> Usuarios Generales</a></li>  
+                            <li><a href="{{ url('tokens') }}"><span class="fa fa-key"></span> Tokens</a></li>            
                         </ul>
                     </li>    
                     @endif
