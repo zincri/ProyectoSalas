@@ -23,6 +23,8 @@ Route::post('/login','Auth\LoginController@login')->name('login');
 Route::post('/logout','Auth\LoginController@logout')->name('logout');
 Route::resource('registrar','Auth\RegistrarController');
 Route::resource('usuarios','Admin\UsuariosController');
+Route::resource('salas','SalasController');
+Route::resource('eventos','EventosController');
 Route::get('resetpass','Admin\UsuariosController@resetpass')->name('resetpass');
 Route::post('resetpass','Admin\UsuariosController@saveresetpass')->name('resetpass');
 Route::get('resetpassuser/{id}','Admin\UsuariosController@resetpassuser')->name('resetpassuser');

@@ -67,6 +67,16 @@
                             <li><a href="{{ url('usuarios') }}"><span class="fa fa-user"></span> Usuarios Generales</a></li>            
                         </ul>
                     </li>    
+                    @endif
+                    @if (Auth::user()->rol=='general')
+                    <li class="xn-openable">
+                        <a href="{{ url('salas') }}"><span class="fa fa-user"></span> <span class="xn-text">Salas</span></a>
+                    </li>    
+                    @endif
+                    @if(Auth::user()->rol=='general')
+                    <li class="xn-openable">
+                        <a href="{{ url('eventos') }}"><span class="fa fa-user"></span> <span class="xn-text">Mis Eventos</span></a>
+                    </li>   
                     @endif                    
                     
                     
@@ -214,7 +224,9 @@
         <script type="text/javascript" src="{{asset('js/plugins/rickshaw/rickshaw.min.js') }}"></script>
         <script type='text/javascript' src="{{asset('js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
         <script type='text/javascript' src="{{asset('js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>                
-        <script type='text/javascript' src="{{asset('js/plugins/bootstrap/bootstrap-datepicker.js') }}"></script>                
+        <script type='text/javascript' src="{{asset('js/plugins/bootstrap/bootstrap-datepicker.js') }}"></script>    
+        
+	    <script type='text/javascript' src="{{ asset('js/plugins/bootstrap/bootstrap-timepicker.min.js')}}"></script>              
         <script type="text/javascript" src="{{asset('js/plugins/owl/owl.carousel.min.js') }}"></script> 
         <script type="text/javascript" src="{{asset('js/plugins/bootstrap/bootstrap-file-input.js') }}"></script>
         <script type="text/javascript" src="{{asset('js/plugins/bootstrap/bootstrap-select.js') }}"></script>
