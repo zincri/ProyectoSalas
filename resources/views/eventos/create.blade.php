@@ -84,7 +84,7 @@
                 <label class="col-md-3 control-label">¿Uso de Proyector?</label>
                 <div class="col-md-9">
                 <input type="radio" name="proyector" value="1"> Si 
-                <input type="radio" name="proyector" value="0"> No
+                <input checked type="radio" name="proyector" value="0"> No
                 </div>
             </div>
 
