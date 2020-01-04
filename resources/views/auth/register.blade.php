@@ -91,7 +91,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group {{$errors->has('token') ? 'has-error':''}}">
+                        {{-- <div class="form-group {{$errors->has('token') ? 'has-error':''}}">
                             <label class="col-md-3 col-xs-12 control-label">Token</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
@@ -101,7 +101,7 @@
                                 {!! $errors->first('token','<span class="help-block">:message</span>')!!}
 
                             </div>
-                        </div>
+                        </div> --}}
 
 
 
