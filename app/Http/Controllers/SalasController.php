@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Sala;
 
 class SalasController extends Controller
 {
@@ -14,7 +15,7 @@ class SalasController extends Controller
     public function index()
     {
 
-            $datos = ['sala D','sala z','sala I'];
+            $datos = Sala::all();
             return view("salas.index",['datos'=>$datos]); 
     }
 
@@ -46,7 +47,7 @@ class SalasController extends Controller
      */
     public function show($id)
     {
-        return view("salas.create");
+        return view("eventos.create",['id'=>$id]);
     }
 
     /**

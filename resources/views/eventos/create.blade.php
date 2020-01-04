@@ -6,7 +6,8 @@
 {{Form::token()}}
 <div class="form-horizontal">
     <div class="">
-
+        <input type="text" class="form-group" style="display:none" name="sala_id"
+        value="{{$id}}" />
             <div class="form-group {{$errors->has('nombre') ? 'has-error':''}}">
                 <label class="col-md-3 control-label">Nombre del Evento</label>
                 <div class="col-md-9">

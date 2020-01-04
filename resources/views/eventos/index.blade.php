@@ -34,39 +34,42 @@
                         <tr>
                             <th>Nombre del Evento</th>
                             <th>Fecha</th>
-                            <th>Cliente</th>
+                            <th>Hora inicio</th>
+                            <th>Hora fin</th>
+                            <th>Proyector</th>
+                            <th>Sala</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($datos as $item)
-                        <td>{{$item}}</td>
-                        {{-- <tr>
+                        <tr>
                             <td>{{$item->nombre}}</td>
                             <td>{{$item->fecha}}</td>
-                            <td>{{App\User::find($item->cliente_id)->name}}</td>
-                            @if ($item->confirmado == 1)
-                                <td>Confirmado</td>
-                            @else
-                                <td>No Confirmado</td>
-                            @endif
-
+                            <td>{{$item->hora_inicio}}</td>
+                            <td>{{$item->hora_fin}}</td>
+                            <td>{{$item->proyector}}</td>
+                            <td>{{$item->sala_id}}</td>
+                            <td>{{$item->estado}}</td>
                             <td>
-                                <a href="{{URL::action('Admin\EventosController@show',$item->id)}}"><button
+                                {{-- <a href="{{URL::action('Admin\EventosController@show',$item->id)}}"><button
                                         class="btn btn-info"><i class="fa fa-eye"></i></button></a>
-                                &nbsp;
-
-                                <a href="{{ url('administrador/uploadimage/'.$item->id.'')}}"><button
-                                    class="btn btn-warning"><i class="fa fa-image"></i></button></a>
+                                &nbsp; --}}
+                                @if($item->estado=='no confirmado')
+                                <a href="{{ URL::action('EventosController@edit',$item->id)}}"><button
+                                    class="btn btn-warning"><i class="fa fa-pencil"></i></button></a>
                                 &nbsp;
                                 
-                                <a href="{{ URL::action('Admin\AbonosController@edit',$item->id)}}"><button
-                                    class="btn btn-success"><i class="fa fa-money"></i></button></a>
+                                <a href="" class="profile-control-right" data-target="#message-box-danger-{{$item->id}}"
+                                    data-toggle="modal"><button class="btn btn-danger"><i
+                                            class="fa fa-trash-o"></i></button></a>
                                 &nbsp;
+                                @endif
+                                @include('eventos.delete')
                             </td>
                             
-                        </tr> --}}
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>

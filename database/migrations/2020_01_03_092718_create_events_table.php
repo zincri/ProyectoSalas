@@ -30,6 +30,8 @@ class CreateEventsTable extends Migration
            
         $table->bigInteger('sala_id')->unsigned();
         $table->foreign('sala_id')->references('id')->on('salas');
+        $table->bigInteger('usuario_id')->unsigned();
+        $table->foreign('usuario_id')->references('id')->on('users');
 
         });
     }

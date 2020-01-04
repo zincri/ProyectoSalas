@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Event;
 use Illuminate\Support\Facades\Redirect;
 
@@ -15,8 +16,9 @@ class EventosController extends Controller
      */
     public function index()
     {
-        $dato=Event::all();
-        return view('eventos.show',['datos'=>$dato]);
+        $usuario = Auth::user();
+        $dato = Event::where('usuario_id', '=', $usuario->id)->where('activo','=','1')->get();
+        return view('eventos.index',['datos'=>$dato]);
     }
 
     /**
@@ -44,6 +46,7 @@ class EventosController extends Controller
             'hora_inicio'=>'required',
             'hora_final'=>'required',
             'proyector'=>'required',
+            'sala_id'=>'required',
         ]);
 
         $evento = new Event;
@@ -55,9 +58,10 @@ class EventosController extends Controller
         $evento->proyector = $request->get('proyector');
         $evento->estado='no confirmado';
         $evento->activo=1;
-        $evento->sala_id=1;
+        $evento->sala_id=$request->get('sala_id');
+        $evento->usuario_id= Auth::user()->id;
         $evento->save();
-        return Redirect::to('eventos');
+        return Redirect::to('salas');
     }
 
     /**
@@ -79,7 +83,9 @@ class EventosController extends Controller
      */
     public function edit($id)
     {
-        //
+       
+        $datos = Event::find($id);
+        return view("eventos.edit",['datos'=>$datos]);
     }
 
     /**
@@ -91,7 +97,32 @@ class EventosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $evento = Event::find($id);
+        //$this->authorize('pass',$event);
+
+        $credentials=$this->validate(request(),[
+            'nombre' => 'required|string',
+            'descripcion'=>'required',
+            'fecha'=>'required',
+            'hora_inicio'=>'required',
+            'hora_final'=>'required',
+            'proyector'=>'required',
+        ]);
+
+        $evento = Event::findOrFail($id);;
+        $evento->nombre = $request->get('nombre');
+        $evento->descripcion = $request->get('descripcion');
+        $evento->fecha = $request->get('fecha');
+        $evento->hora_inicio = $request->get('hora_inicio');
+        $evento->hora_final = $request->get('hora_final');
+        $evento->proyector = $request->get('proyector');
+        $evento->estado='no confirmado';
+        $evento->activo=1;
+        $evento->sala_id=$evento->sala_id;
+        $evento->usuario_id= Auth::user()->id;
+        $evento->update();
+        return Redirect::to('eventos');
+     
     }
 
     /**
@@ -102,6 +133,9 @@ class EventosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $evento = Event::findOrFail($id);
+        $evento->activo = 0;
+        $evento->update();
+        return Redirect::to('eventos');
     }
 }

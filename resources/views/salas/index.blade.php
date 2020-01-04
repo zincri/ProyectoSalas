@@ -24,7 +24,7 @@
                                     <div class="input-group-addon">
                                         <span class="fa fa-search"></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="A quien estas buscando?"/>
+                                    <input type="text" class="form-control" placeholder="Que sala decea?"/>
                                     <div class="input-group-btn">
                                         <button class="btn btn-primary">Search</button>
                                     </div>
@@ -32,9 +32,6 @@
                             </div>
                         </div>
                     </form>
-                    </div>
-                    <div class="col-md-4">
-                            <a href="{{ URL::action('Admin\UsuariosController@show',1)}}"><button class="btn btn-success btn-block"><span class="fa fa-plus"></span> Nuevo usuario</button></a>
                     </div>
                 </div>
 
@@ -53,7 +50,7 @@
                         <img src="{{asset('assets/images/users/no-image.jpg')}}"/>
                     </div>
                     <div class="profile-data">
-                        <div class="profile-data-name" >{{$item}}</div>
+                        <div class="profile-data-name" >{{$item->nombre}}</div>
                         <div class="profile-data-title"></div>
                     </div>
                     {{-- <div class="profile-controls">
@@ -66,7 +63,7 @@
 
                 </div>
                 <div class="panel-footer">
-                    <a href="{{ URL::action('SalasController@show',1)}}"><button class="btn btn-success">Apartar Sala</button></a>
+                    <a href="{{ URL::action('SalasController@show',$item->id)}}"><button class="btn btn-success">Apartar Sala</button></a>
                 </div>
             </div>
             <!-- END CONTACT ITEM -->
