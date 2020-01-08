@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Token', 'user_id','id');
     }
+
+    public function events()
+    {
+        return $this->hasMany('App\Event', 'usuario_id','id');
+    }
 }

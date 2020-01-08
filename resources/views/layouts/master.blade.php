@@ -67,17 +67,14 @@
                             <li><a href="{{ url('usuarios') }}"><span class="fa fa-user"></span> Usuarios Generales</a></li>  
                             <li><a href="{{ url('tokens') }}"><span class="fa fa-key"></span> Tokens</a></li>            
                         </ul>
-                    </li>    
+                    </li>  
+                    <li><a href="{{ url('salas') }}"><span class="fa fa-home"></span> Salas</a></li>  
+                    <li><a href="{{ url('eventos') }}"><span class="glyphicon glyphicon-calendar"></span> Eventos</a></li>  
+      
                     @endif
                     @if (Auth::user()->rol=='general')
-                    <li class="xn-openable">
-                        <a href="{{ url('salas') }}"><span class="fa fa-user"></span> <span class="xn-text">Salas</span></a>
-                    </li>    
-                    @endif
-                    @if(Auth::user()->rol=='general')
-                    <li class="xn-openable">
-                        <a href="{{ url('eventos') }}"><span class="fa fa-user"></span> <span class="xn-text">Mis Eventos</span></a>
-                    </li>   
+                        <li><a href="{{ url('sala/lista') }}"><span class="fa fa-home"></span> <span class="xn-text">Salas</span></a></li>
+                        <li><a href="{{ url('eventos') }}"><span class="glyphicon glyphicon-calendar"></span> <span class="xn-text">Mis Eventos</span></a></li>       
                     @endif                    
                     
                     
@@ -97,38 +94,12 @@
                         <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
                     </li>
                     <!-- END TOGGLE NAVIGATION -->
-                    <!-- SEARCH -->
-                    <li class="xn-search">
-                        <form role="form">
-                            <input type="text" name="search" placeholder="Search..."/>
-                        </form>
-                    </li>   
-                    <!-- END SEARCH -->
+                    
                     <!-- SIGN OUT -->
                     <li class="xn-icon-button pull-right">
                         <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
                     </li> 
                     <!-- END SIGN OUT -->
-                    <!-- MESSAGES -->
-                    <li class="xn-icon-button pull-right">
-                        <a href="#"><span class="fa fa-comments"></span></a>
-                        <div class="informer informer-danger">4</div>
-                        <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>                                
-                                <div class="pull-right">
-                                    <span class="label label-danger">4 new</span>
-                                </div>
-                            </div>
-                            <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                                
-                            </div>     
-                            <div class="panel-footer text-center">
-                                <a href="pages-messages.html">Show all messages</a>
-                            </div>                            
-                        </div>                        
-                    </li>
-                    <!-- END MESSAGES -->
                     <!-- TASKS -->
                     <li class="xn-icon-button pull-right">
                         <a href="#"><span class="fa fa-tasks"></span></a>

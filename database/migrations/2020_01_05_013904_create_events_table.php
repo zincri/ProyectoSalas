@@ -21,7 +21,7 @@ class CreateEventsTable extends Migration
             $table->time('hora_inicio');
             $table->time('hora_final');
             $table->boolean('proyector');
-            $table->string('estado');
+            $table->string('estado'); //Este campo no sirve --
             $table->boolean('activo');
 
             $table->timestamps();
@@ -32,8 +32,14 @@ class CreateEventsTable extends Migration
         $table->foreign('sala_id')->references('id')->on('salas');
         $table->bigInteger('usuario_id')->unsigned();
         $table->foreign('usuario_id')->references('id')->on('users');
+        $table->bigInteger('status_id')->unsigned();
+        $table->foreign('status_id')->references('id')->on('statuses');
+        $table->bigInteger('projector_id')->unsigned()->nulleable();
+        $table->foreign('projector_id')->references('id')->on('projectors');
+        
 
         });
+        
     }
 
     /**

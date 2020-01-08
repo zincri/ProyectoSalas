@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Sala;
 
 class SalasController extends Controller
@@ -21,9 +22,14 @@ class SalasController extends Controller
 
     public function index()
     {
+        $datos = Sala::where('activo','=',1)->get();
+        return view("content.salas.index",['datos'=>$datos]); 
+    }
 
-            $datos = Sala::all();
-            return view("salas.index",['datos'=>$datos]); 
+    public function index_usuarios_generales()
+    {
+            $datos = Sala::where('activo','=',1)->get();
+            return view("content.salas.index",['datos'=>$datos]); 
     }
 
     /**
@@ -33,6 +39,8 @@ class SalasController extends Controller
      */
     public function create()
     {
+
+        return view('content.salas.create');
     }
 
     /**
@@ -43,7 +51,17 @@ class SalasController extends Controller
      */
     public function store(Request $request)
     {
+        $credentials=$this->validate(request(),[
+            'nombre'=>'required|string|max:30',
+            'edificio'=>'required|string|max:1000',
+        ]);
         
+        $sala=new Sala;
+        $sala->nombre=$request->get('nombre');
+        $sala->edificio=$request->get('edificio');
+        $sala->activo=1;
+        $sala->save();
+        return Redirect::to('salas');
     }
 
     /**
@@ -54,7 +72,12 @@ class SalasController extends Controller
      */
     public function show($id)
     {
-        return view("eventos.create",['id'=>$id]);
+        return view("content.eventos.create",['id'=>$id]);
+    }
+
+    public function crear_evento($id)
+    {
+        return view("content.eventos.create",['id'=>$id]);
     }
 
     /**
@@ -65,7 +88,8 @@ class SalasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $datos = Sala::find($id);
+        return view("content.salas.edit",['datos'=>$datos]);
     }
 
     /**
@@ -77,7 +101,15 @@ class SalasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $credentials=$this->validate(request(),[
+            'nombre'=>'required|string|max:30',
+            'edificio'=>'required|string|max:1000',
+        ]);
+        $sala = Sala::findOrFail($id);
+        $sala->nombre=$request->get('nombre');
+        $sala->edificio=$request->get('edificio');
+        $sala->update();
+        return Redirect::to('salas');
     }
 
     /**
@@ -88,6 +120,9 @@ class SalasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sala = Sala::findOrFail($id);
+        $sala->activo = 0;
+        $sala->update();
+        return Redirect::to('salas');
     }
 }
