@@ -134,9 +134,9 @@
                         </div>                        
                     </li>
 
-                    <li class="xn-icon-button pull-right">
+                    {{-- <li class="xn-icon-button pull-right">
                     <a href="{{url('eventos/refresh_data')}}"><span class="fa fa-refresh"></span></a>
-                    </li>
+                    </li> --}}
                     @endif
                     <!-- END TASKS -->
                 </ul>
