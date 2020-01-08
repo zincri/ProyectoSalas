@@ -31,6 +31,10 @@ Route::get('sala/lista','SalasController@index_usuarios_generales');
 Route::get('sala/crearevento/{id}','SalasController@crear_evento');
 
 Route::resource('eventos','EventosController');
+Route::get('eventos/refresh_data',function () {
+   
+    return "Si paso";
+});//'EventosController@estados');
 Route::get('eventos/accept/{id}','EventosController@accept');
 Route::get('eventos/decline/{id}','EventosController@decline');
 

@@ -3,7 +3,7 @@
 @section ('content')
 <!-- PAGE TITLE -->
 <div class="page-title">
-    <h2><span class="fa fa-users"></span> Lista de Usuarios <small>4 usuarios</small></h2>
+    <h2><span class="fa fa-users"></span> Lista de Usuarios</h2>
 </div>
 <!-- END PAGE TITLE -->
 
@@ -26,7 +26,7 @@
                                     </div>
                                     <input type="text" class="form-control" placeholder="A quien estas buscando?"/>
                                     <div class="input-group-btn">
-                                        <button class="btn btn-primary">Search</button>
+                                        <button class="btn btn-primary">Buscar</button>
                                     </div>
                                 </div>
                             </div>

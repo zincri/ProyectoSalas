@@ -344,4 +344,26 @@ class EventosController extends Controller
         return Redirect::to('eventos');
             
         }
+
+    public function estados(){
+            $eventos = Event::where('activo','=',1)->get();
+            return $eventos;
+             /* foreach($eventos as $item){
+               if($item->status_id!=2 ||  $item->status_id!=4 || $item->status_id!=7 ){
+                    if($item->fecha==now()){
+                        $event = Event::findOrFail($item->id);
+                        $event->status_id = 5;
+                        $event->update();
+                    }
+                    if($item->fecha<now()){
+                        $event = Event::findOrFail($item->id);
+                        $event->status_id = 6;
+                        $event->update();
+                    }
+                }
+            } */
+            
+            //return back();
+    }
+
 }

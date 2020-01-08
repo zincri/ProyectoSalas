@@ -1,13 +1,8 @@
 @extends('layouts.master')
+
 @section('content')
 <div class="panel-body">
 
-
-    {!! $errors->first('erroregistro','
-    <div class="alert alert-danger">
-        <strong>Warning!</strong>Ocurrio un error, intentelo nuevamente por favor!
-    </div>
-    ')!!}
     <h2>{{$datos->nombre}}</h2>
     <hr>
     <div class="row">
