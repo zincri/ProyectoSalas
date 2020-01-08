@@ -1,5 +1,5 @@
 <!-- CSS INCLUDE -->
-<link rel="stylesheet" type="text/css" id="theme" href="{{asset('css/theme-white.css')}}" />
+<link rel="stylesheet" type="text/css" id="theme" href="{{asset('css/theme-blue.css')}}" />
 
 
 <div class="page-container">
@@ -14,7 +14,7 @@
                     <div class="panel-body">
 
                         <div class="form-group {{$errors->has('nombre') ? 'has-error':''}}">
-                            <label class="col-md-3 col-xs-12 control-label">Nombre</label>
+                            <label class="col-md-3 control-label">Nombre</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group {{$errors->has('apellido_paterno') ? 'has-error':''}}">
-                            <label class="col-md-3 col-xs-12 control-label">Apellido Paterno</label>
+                            <label class="col-md-3  control-label">Apellido Paterno</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group {{$errors->has('apellido_materno') ? 'has-error':''}}">
-                            <label class="col-md-3 col-xs-12 control-label">Apellido Materno</label>
+                            <label class="col-md-3 control-label">Apellido Materno</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="form-group {{$errors->has('edad') ? 'has-error':''}}">
-                            <label class="col-md-3 col-xs-12 control-label">Edad</label>
+                            <label class="col-md-3 control-label">Edad</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
@@ -66,7 +66,7 @@
 
 
                         <div class="form-group {{$errors->has('telefono') ? 'has-error':''}}">
-                            <label class="col-md-3 col-xs-12 control-label">Telefono</label>
+                            <label class="col-md-3 control-label">Telefono</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
@@ -79,7 +79,7 @@
                         </div>
 
                         <div class="form-group {{$errors->has('email') ? 'has-error':''}}">
-                            <label class="col-md-3 col-xs-12 control-label">Email</label>
+                            <label class="col-md-3 control-label">Email</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
@@ -92,7 +92,7 @@
                         </div>
 
                         {{-- <div class="form-group {{$errors->has('token') ? 'has-error':''}}">
-                            <label class="col-md-3 col-xs-12 control-label">Token</label>
+                            <label class="col-md-3 control-label">Token</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
@@ -107,7 +107,7 @@
 
 
                         <div class="form-group {{$errors->has('password') ? 'has-error':''}}">
-                            <label class="col-md-3 col-xs-12 control-label">Contraseña</label>
+                            <label class="col-md-3 control-label">Contraseña</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
@@ -122,7 +122,7 @@
 
 
                         <div class="form-group {{$errors->has('password_confirmation') ? 'has-error':''}}">
-                            <label class="col-md-3 col-xs-12 control-label">Confirmar contraseña</label>
+                            <label class="col-md-3 control-label">Confirmar contraseña</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>

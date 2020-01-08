@@ -21,7 +21,12 @@
     <div class="login-container lightmode">
 
         <div class="login-box animated fadeInDown">
-            <div class="login-logo">
+            {{-- <div class="login-logo">
+            </div> --}}
+            <div class="" >
+                <img src="{{asset('img/ittg.png')}}" alt="ittg" 
+                style="height:100px;width:100px;display:block;margin-left: auto;
+                margin-right: auto; margin-bottom:15pt;">
             </div>
             <div class="login-body">
                 <div class="login-title"><strong>Inicia sesión</strong> con tu cuenta</div>
@@ -54,12 +59,6 @@
                 <a href="{{ url('registrar')}}">
                     <p><small>Registrar Usuario</small><br /></p>
                 </a>
-            </div>
-            <div class="login-footer">
-                <div class="pull-left">
-                    &copy; 2019 - Zincri M, Jhoana D., ... .
-                </div>
-
             </div>
         </div>
 

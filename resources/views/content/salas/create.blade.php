@@ -14,7 +14,8 @@
                         <span class="input-group-addon"><span
                                 class="fa fa-pencil"></span></span>
                         <input type="text" class="form-control" name="nombre"
-                            value="aaaa{{-- {{old('nombre')}} --}}" />
+                        placeholder="Nombre sala"
+                            value="{{old('nombre')}}" />
                     </div>
                     {!! $errors->first('nombre','<span
                         class="help-block">:message</span>')!!}
@@ -29,7 +30,8 @@
                         <span class="input-group-addon"><span
                                 class="fa fa-pencil"></span></span>
                         <input type="text" class="form-control" name="edificio"
-                            value="aaa{{-- {{old('edificio')}} --}}" />
+                            placeholder="Descripción"
+                            value="{{old('edificio')}}" />
                     </div>
                     {!! $errors->first('edificio','<span
                         class="help-block">:message</span>')!!}

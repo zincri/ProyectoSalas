@@ -101,24 +101,39 @@
                     </li> 
                     <!-- END SIGN OUT -->
                     <!-- TASKS -->
+                    @if(Auth::user()->rol=='admin')
                     <li class="xn-icon-button pull-right">
                         <a href="#"><span class="fa fa-tasks"></span></a>
-                        <div class="informer informer-warning">3</div>
+                    <div class="informer informer-warning">{{count(App\Event::where('status_id','=',2)->where('activo','=',1)->get())}}</div>
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-tasks"></span> Tasks</h3>                                
+                                <h3 class="panel-title"><span class="fa fa-tasks"></span> NOTIFICACIONES</h3>                                
                                 <div class="pull-right">
-                                    <span class="label label-warning">3 active</span>
+                                    <span class="label label-warning">{{count(App\Event::where('status_id','=',2)->where('activo','=',1)->get())}} Notificaciones</span>
                                 </div>
                             </div>
-                            <div class="panel-body list-group scroll" style="height: 200px;">                                
+                            <div class="panel-body list-group scroll" style="height: 200px;">  
+                                <div class="panel-body list-group scroll" style="height: 200px;"> 
+
+                                @foreach (App\Event::where('status_id','=',2)->where('activo','=',1)->get() as $item)
+                                    <a class="list-group-item" href="{{ URL::action('EventosController@show',$item->id)}}">
+                                        <strong>{{$item->nombre}}</strong><br>
+                                        <strong>{{$item->fecha}}</strong><br>
+                                        <strong>{{$item->state->nombre}}</strong>
+                                            
+                                            <small class="text-muted"></small>
+                                        </a>
+                                    @endforeach
+                                </div>
+                                
                                                               
                             </div>     
                             <div class="panel-footer text-center">
-                                <a href="pages-tasks.html">Show all tasks</a>
+                                <a href="{{url('eventos')}}">Ver más</a>
                             </div>                            
                         </div>                        
                     </li>
+                    @endif
                     <!-- END TASKS -->
                 </ul>
                 <!-- END X-NAVIGATION VERTICAL -->                     

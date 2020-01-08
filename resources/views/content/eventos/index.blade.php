@@ -96,18 +96,18 @@
                             @endif
                             @if(Auth::user()->rol=='admin')
                             
+                            @if($item->state->id!=7)
+                            <a href="{{ URL::action('EventosController@show',$item->id)}}"><button
+                                class="btn btn-warning"><i class="fa fa-eye"></i></button></a>
+                            
+                            @endif
+                            
                             @if($item->state->id ==2)
                             <a href="{{ url('eventos/accept',$item->id)}}"><button
                                 class="btn btn-success"><i class="fa fa-check"></i></button></a>
                             
                             <a href="{{url('eventos/decline',$item->id)}}"><button
-                                class="btn btn-primary"><i class="fa fa-times"></i></button></a>
-                            
-                            @endif
-
-                            @if($item->state->id!=7)
-                            <a href="{{ URL::action('EventosController@show',$item->id)}}"><button
-                                class="btn btn-warning"><i class="fa fa-eye"></i></button></a>
+                                class="btn btn-danger"><i class="fa fa-times"></i></button></a>
                             
                             @endif
 
